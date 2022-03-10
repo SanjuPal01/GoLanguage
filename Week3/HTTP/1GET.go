@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 const URL = "https://lco.dev"
@@ -21,4 +22,11 @@ func main() {
 		panic(err)
 	}
 	fmt.Println(string(dataBytes))
+
+	// 2nd way
+	var responseString strings.Builder
+	byteCount, _ := responseString.Write(dataBytes)
+	fmt.Println("The Byte Count is", byteCount)
+	fmt.Println(responseString.String())
+
 }
