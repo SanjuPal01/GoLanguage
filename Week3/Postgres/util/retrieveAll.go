@@ -27,7 +27,12 @@ func RetrieveAll(db *sql.DB) {
 		}
 		studentDetail = append(studentDetail, tempStudent)
 	}
+	fmt.Println()
+	fmt.Println("ID", "FirstName", "LastName", "Age")
+	fmt.Println("----------------------------")
 	for _, val := range studentDetail {
 		fmt.Println(val.id, val.firstname, val.lastname, val.age)
 	}
+	fmt.Println("----------------------------")
+	fmt.Println()
 }
