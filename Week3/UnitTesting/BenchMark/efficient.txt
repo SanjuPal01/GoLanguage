@@ -1,0 +1,7 @@
+goos: darwin
+goarch: amd64
+pkg: example.com/benchmark
+cpu: VirtualApple @ 2.50GHz
+BenchmarkConcat-10    	66219836	        16.90 ns/op
+PASS
+ok  	example.com/benchmark	1.314s
