@@ -1,0 +1,15 @@
+syntax="proto3";
+
+/*
+Money (example: USD 35.42  (35 = integral, 42 = decimal)):
+Currency Code (string)
+Integral unit (number)
+Integral nanos (number)
+*/
+
+
+message Money{
+    string Currency_Code = 1;
+    int64 units = 2;
+    int32 nanos = 3;
+}

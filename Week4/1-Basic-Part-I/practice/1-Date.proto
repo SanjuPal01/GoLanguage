@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+/*
+    Task 
+    Date (example: 2018/03/15). With fields:
+    Year (number)
+    Month (number)
+    Day (number)
+*/
+
+message Date{
+    uint32 Year = 1;
+    uint32 Month = 2;
+    uint32 Day = 3;
+}

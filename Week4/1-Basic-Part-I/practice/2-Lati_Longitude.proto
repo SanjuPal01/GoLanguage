@@ -1,0 +1,12 @@
+syntax="proto3";
+
+/*
+Latitude Longitude (example: -33.865382, 151.192861). With fields:
+Latitude (number) 
+Longitude (number)
+*/
+
+message Lati_Longi{
+    double Latitude = 1;
+    double Longitude = 2;
+}

@@ -1,0 +1,14 @@
+syntax="proto3";
+
+/*
+Person (example: Michael Jordan):
+First Name
+List of middle names
+Last Name
+*/
+
+message Person{
+    string first_name = 1;
+    repeated string Middle_Name = 2;
+    string last_name = 3;
+}
