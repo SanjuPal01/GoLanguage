@@ -1,0 +1,9 @@
+# option go_package="./src";           // First the protoc will go to --go_out directory and from there it start putting the file where you defined. if folder doesn't exist then it will create it
+
+
+# protoc -I src/ --go_out=simple_output/ src/simple/simple.proto
+# protoc -I src/ --go_out=src/simple/ src/simple/simple.proto    --  Main
+# protoc -I src/ --go_out=src/enum src/enum/enum.proto
+
+
+# export PATH="$PATH:$(go env GOPATH)/bin"
