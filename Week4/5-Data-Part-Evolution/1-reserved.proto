@@ -1,0 +1,10 @@
+syntax="proto3";
+
+option go_package=".";
+
+message Data{
+    reserved 2, 4, 5 to 11;
+    reserved "firstName", "lastName";
+    int32 id = 1;
+    string details = 3;
+}

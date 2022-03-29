@@ -1,0 +1,12 @@
+syntax="proto3";
+
+option go_package=".";
+
+message MyMessage{
+    int32 id = 1;
+    map<string, Result> myMap = 2;
+}
+
+message Result{
+    string result = 1;
+}

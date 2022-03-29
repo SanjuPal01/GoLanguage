@@ -1,0 +1,11 @@
+syntax="proto3";
+
+option go_package=".";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+message MyMessage{
+    google.protobuf.Timestamp msg_date = 1;
+    google.protobuf.Duration validity = 2;
+}

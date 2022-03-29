@@ -1,0 +1,11 @@
+syntax="proto3";
+
+option go_package=".";
+
+message MyMessage{
+    uint32 id = 1;
+    oneof myOneOf{
+        string option1 = 2;
+        string option2 = 3;
+    }
+}
