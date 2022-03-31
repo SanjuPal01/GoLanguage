@@ -10,14 +10,29 @@ import (
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/status"
 )
 
 func main() {
 	fmt.Println("Creating Client")
+
+	// First go to greet-with-ssl directory then run it
+	tls := true // main flag for ssl enabled/disabled
+	// opts := grpc.WithInsecure()	// deprecated
+	opts := grpc.WithTransportCredentials(insecure.NewCredentials())
+	if tls {
+		certFile := "ssl/ca.crt" // Certificate Authority Trust certificate
+		creds, sslErr := credentials.NewClientTLSFromFile(certFile, "")
+		if sslErr != nil {
+			log.Fatalf("Error while loading CA trust certificate: %v", sslErr)
+			return
+		}
+		opts = grpc.WithTransportCredentials(creds)
+	}
 	// cc, err := grpc.Dial("localhost:50051", grpc.WithInsecure()) // because by default it want ssl certificates
-	cc, err := grpc.Dial("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials())) // New Way - because old one is deprecated
+	cc, err := grpc.Dial("localhost:50051", opts) // New Way - because old one is deprecated
 	if err != nil {
 		log.Fatalf("could not connect: %v", err)
 	}
@@ -25,7 +40,7 @@ func main() {
 
 	c := greetpb.NewGreetServiceClient(cc)
 	// fmt.Printf("Client Created: %f\n", c)
-	// DoUnary(c)
+	DoUnary(c)
 
 	// DoServerStreaming(c)
 
@@ -33,8 +48,8 @@ func main() {
 
 	// DoBiDiStreaming(c)
 
-	doUnaryWithDeadline(c, 5*time.Second) // should complete
-	doUnaryWithDeadline(c, 2*time.Second) // should timeout
+	// DoUnaryWithDeadline(c, 5*time.Second) // should complete
+	// DoUnaryWithDeadline(c, 2*time.Second) // should timeout
 
 }
 
@@ -181,7 +196,7 @@ func DoBiDiStreaming(c greetpb.GreetServiceClient) {
 	<-ch
 }
 
-func doUnaryWithDeadline(c greetpb.GreetServiceClient, timeout time.Duration) {
+func DoUnaryWithDeadline(c greetpb.GreetServiceClient, timeout time.Duration) {
 	fmt.Println("Staring to do a UnaryWithDeadline RPC")
 	req := &greetpb.GreetWithDeadlineRequest{
 		Greet: &greetpb.Greeting{
